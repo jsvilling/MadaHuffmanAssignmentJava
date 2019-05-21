@@ -14,7 +14,7 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 
-public class Main {
+public class HuffmanEnCodingService {
 
     private static final String EMPTY = "";
     private static final String SOURCE_FILE = "text.txt";
@@ -27,13 +27,7 @@ public class Main {
     private static final String CODE_SEPARATOR = ":";
     private static final String SYMBOL_SEPARATOR = "-";
 
-    public static void main(String[] args) throws IOException {
-        Main main = new Main();
-        //main.compress();
-        main.decompress();
-    }
-
-    private void compress() throws IOException {
+    public void encode() throws IOException {
         String text = Files.readString(Paths.get(SOURCE_FILE), StandardCharsets.UTF_8);
         Map<String, Long> frequencyMap = buildFrequencyMap(text);
         HuffmanTree huffmanTree = new HuffmanTree(frequencyMap);
@@ -44,10 +38,9 @@ public class Main {
         dos.write(compressed);
         fos.close();
         dos.close();
-        //writeToFile(compressed, COMPRESSED_FILE);
     }
 
-    private void decompress() throws IOException {
+    public void decode() throws IOException {
         Map<String, Character> codes = readCodes();
         String binaryString = readCompressed();
         String decompressedString = decompressBinaryString(binaryString, codes);
