@@ -47,11 +47,6 @@ public class HuffmanTree {
         return Collections.unmodifiableMap(codeMap);
     }
 
-    public String getCodeMapAsString() {
-        return codeMap.entrySet().stream().map(e -> "" + e.getKey() + CODE_SEPARATOR + e.getValue()).collect(Collectors.joining(SYMBOL_SEPARATOR));
-
-    }
-
     private class Node {
         private final Node subNodeLeft;
         private final Node subNodeRight;

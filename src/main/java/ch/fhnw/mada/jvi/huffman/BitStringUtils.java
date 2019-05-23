@@ -1,6 +1,10 @@
 package ch.fhnw.mada.jvi.huffman;
 
 public class BitStringUtils {
+
+    public static final String ONE = "1";
+    public static final String ZERO = "0";
+
     /**
      * This function converts a bytearray into a bit string adding zero padding to the left. The size of the bit mask
      * is size 8.
@@ -29,8 +33,16 @@ public class BitStringUtils {
         return String.valueOf(bits);
     }
 
-    public static String removeSuffix(String bitString, String firstSuffixToken) {
-        int lastIndexOfOne = bitString.lastIndexOf(firstSuffixToken);
+    public static String removeSuffix(String bitString) {
+        int lastIndexOfOne = bitString.lastIndexOf(ONE);
         return bitString.substring(0, lastIndexOfOne);
+    }
+
+    public static String appendSuffix(StringBuilder original) {
+        original.append(ONE);
+        while (original.length() % 8 != 0) {
+            original.append(ZERO);
+        }
+        return original.toString();
     }
 }
