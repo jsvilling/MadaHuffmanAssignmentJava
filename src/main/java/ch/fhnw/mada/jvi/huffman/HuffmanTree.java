@@ -1,12 +1,15 @@
 package ch.fhnw.mada.jvi.huffman;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class HuffmanTree {
 
     private static final String EMPTY ="";
     private static final String ONE ="1";
     private static final String ZERO ="0";
+    private static final String CODE_SEPARATOR = ":";
+    private static final String SYMBOL_SEPARATOR = "-";
 
     private final TreeMap<Integer, String> codeMap;
 
@@ -42,6 +45,11 @@ public class HuffmanTree {
 
     public Map<Integer, String> getCodeMap() {
         return Collections.unmodifiableMap(codeMap);
+    }
+
+    public String getCodeMapAsString() {
+        return codeMap.entrySet().stream().map(e -> "" + e.getKey() + CODE_SEPARATOR + e.getValue()).collect(Collectors.joining(SYMBOL_SEPARATOR));
+
     }
 
     private class Node {
