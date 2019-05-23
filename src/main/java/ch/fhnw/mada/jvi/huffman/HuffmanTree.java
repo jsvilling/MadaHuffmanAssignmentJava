@@ -1,15 +1,13 @@
 package ch.fhnw.mada.jvi.huffman;
 
 import java.util.*;
-import java.util.stream.Collectors;
+
+import static ch.fhnw.mada.jvi.huffman.BitStringUtils.ONE;
+import static ch.fhnw.mada.jvi.huffman.BitStringUtils.ZERO;
 
 public class HuffmanTree {
 
     private static final String EMPTY ="";
-    private static final String ONE ="1";
-    private static final String ZERO ="0";
-    private static final String CODE_SEPARATOR = ":";
-    private static final String SYMBOL_SEPARATOR = "-";
 
     private final TreeMap<Integer, String> codeMap;
 
