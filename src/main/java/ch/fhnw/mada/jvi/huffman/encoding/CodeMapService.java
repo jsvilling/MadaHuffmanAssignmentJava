@@ -44,10 +44,7 @@ public class CodeMapService {
     private HuffmanTreeNode buildNodeTree(Map<String, Long> frequencyMap) {
         PriorityQueue<HuffmanTreeNode> huffmanTreeNodes = new PriorityQueue<>(Comparator.comparingLong(HuffmanTreeNode::getCharacterFrequency));
         frequencyMap.entrySet().stream().map(e -> new HuffmanTreeNode(e.getValue(), e.getKey())).forEach(huffmanTreeNodes::add);
-        while (huffmanTreeNodes.size() > 1) {
-            huffmanTreeNodes.add(new HuffmanTreeNode(huffmanTreeNodes.poll(), huffmanTreeNodes.poll()));
-        }
-        return huffmanTreeNodes.peek();
+        return Stream.generate(huffmanTreeNodes::poll).reduce(HuffmanTreeNode::new).orElseThrow();
     }
 
     private TreeMap<Integer, String> buildCodeMap(HuffmanTreeNode huffmanTreeNode, String s) {
