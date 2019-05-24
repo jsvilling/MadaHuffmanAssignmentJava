@@ -3,9 +3,7 @@ package ch.fhnw.mada.jvi.huffman.encoding;
 import ch.fhnw.mada.jvi.huffman.tree.HuffmanTreeNode;
 
 import java.util.Map;
-import java.util.PriorityQueue;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static ch.fhnw.mada.jvi.huffman.encoding.BitStringUtils.ONE;
@@ -23,8 +21,8 @@ public class CodeMapService {
     private static final String EMPTY = "";
 
 
-    public String createCodeMapString(Map<Integer, String> code) {
-        return code.entrySet().stream().map(e -> "" + e.getKey() + CODE_SEPARATOR + e.getValue()).collect(Collectors.joining(SYMBOL_SEPARATOR));
+    public String createCodeMapString(Map<Integer, String> codeMap) {
+        return codeMap.entrySet().stream().map(this::createCodeString).collect(joining(SYMBOL_SEPARATOR));
     }
 
     public Map<String, Long> createFrequencyMap(String text) {
@@ -39,6 +37,10 @@ public class CodeMapService {
     public TreeMap<Integer, String> createCodeMap(Map<String, Long> frequencyMap) {
         HuffmanTreeNode rootNode = buildNodeTree(frequencyMap);
         return buildCodeMap(rootNode, EMPTY);
+    }
+
+    private String createCodeString(Map.Entry<Integer, String> code) {
+        return EMPTY + code.getKey() + CODE_SEPARATOR + code.getValue();
     }
 
     private HuffmanTreeNode buildNodeTree(Map<String, Long> frequencyMap) {
