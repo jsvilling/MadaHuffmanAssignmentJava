@@ -46,7 +46,7 @@ public class HuffmanTreeNode {
         return subNodeRight;
     }
 
-    public long getCharacterFrequency() {
+    public long getFrequency() {
         return characterFrequency;
     }
 

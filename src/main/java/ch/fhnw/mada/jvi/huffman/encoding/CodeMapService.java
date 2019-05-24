@@ -2,7 +2,6 @@ package ch.fhnw.mada.jvi.huffman.encoding;
 
 import ch.fhnw.mada.jvi.huffman.tree.HuffmanTreeNode;
 
-import java.util.Comparator;
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.TreeMap;
@@ -13,6 +12,7 @@ import static ch.fhnw.mada.jvi.huffman.encoding.BitStringUtils.ONE;
 import static ch.fhnw.mada.jvi.huffman.encoding.BitStringUtils.ZERO;
 import static java.lang.Integer.parseInt;
 import static java.util.Arrays.stream;
+import static java.util.Comparator.comparingLong;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.*;
 
@@ -42,9 +42,10 @@ public class CodeMapService {
     }
 
     private HuffmanTreeNode buildNodeTree(Map<String, Long> frequencyMap) {
-        PriorityQueue<HuffmanTreeNode> huffmanTreeNodes = new PriorityQueue<>(Comparator.comparingLong(HuffmanTreeNode::getCharacterFrequency));
-        frequencyMap.entrySet().stream().map(e -> new HuffmanTreeNode(e.getValue(), e.getKey())).forEach(huffmanTreeNodes::add);
-        return Stream.generate(huffmanTreeNodes::poll).reduce(HuffmanTreeNode::new).orElseThrow();
+        return frequencyMap.entrySet().stream()
+                .map(e -> new HuffmanTreeNode(e.getValue(), e.getKey()))
+                .sorted(comparingLong(HuffmanTreeNode::getFrequency))
+                .reduce(HuffmanTreeNode::new).orElseThrow();
     }
 
     private TreeMap<Integer, String> buildCodeMap(HuffmanTreeNode huffmanTreeNode, String s) {
