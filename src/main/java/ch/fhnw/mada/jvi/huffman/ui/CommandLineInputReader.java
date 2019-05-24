@@ -1,14 +1,15 @@
 package ch.fhnw.mada.jvi.huffman.ui;
 
 import ch.fhnw.mada.jvi.huffman.ui.input.YesNoType;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.function.Function;
 import static ch.fhnw.mada.jvi.huffman.ui.input.Label.INVALID_INPUT;
 
+/**
+ * Reader class used to read user input for the {@link CommandLineInterface}
+ */
 class CommandLineInputReader {
     private final Scanner scanner;
-    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     CommandLineInputReader(Scanner scanner) {
         this.scanner = scanner;

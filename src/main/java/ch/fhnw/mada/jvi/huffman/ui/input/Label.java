@@ -1,5 +1,8 @@
 package ch.fhnw.mada.jvi.huffman.ui.input;
 
+/**
+ * Values printed in the {@link ch.fhnw.mada.jvi.huffman.ui.CommandLineInterface}
+ */
 public enum Label {
     WELCOME("Welcome the Mada Huffman Assignment"),
     REQUEST_ACTION("Please choose one of the following commands: \n\t\t encode | decode"),
