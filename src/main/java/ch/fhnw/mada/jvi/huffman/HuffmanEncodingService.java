@@ -5,30 +5,22 @@ import ch.fhnw.mada.jvi.huffman.file.FileService;
 import java.math.BigInteger;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static ch.fhnw.mada.jvi.huffman.BitStringUtils.appendSuffix;
-import static java.util.Arrays.stream;
-import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
 
 public class HuffmanEncodingService {
 
-    private static final String EMPTY = "";
-    private static final String CODE_SEPARATOR = ":";
-    private static final String SYMBOL_SEPARATOR = "-";
-
     private final FileService fileService = new FileService();
+    private final CodeMapService codeMapService = new CodeMapService();
 
     public void encode() {
         String text = readDecoded();
 
-        Map<String, Long> frequencyMap = buildFrequencyMap(text);
+        Map<String, Long> frequencyMap = codeMapService.createFrequencyMap(text);
         HuffmanTree huffmanTree = new HuffmanTree(frequencyMap);
         byte[] encoded = encode(text, huffmanTree.getCodeMap());
 
-        fileService.writeCodeFile(createCodeString(huffmanTree.getCodeMap()));
+        fileService.writeCodeFile(codeMapService.createCodeMapString(huffmanTree.getCodeMap()));
         fileService.writeCompressedFile(encoded);
     }
 
@@ -46,8 +38,7 @@ public class HuffmanEncodingService {
 
     private Map<String, Character> readCodes() {
         String codeString = fileService.readCodeFile();
-        String[] split = codeString.split(SYMBOL_SEPARATOR);
-        return Stream.of(split).map(s -> s.split(CODE_SEPARATOR)).collect(Collectors.toMap(c -> c[1], c -> (char) Integer.parseInt(c[0])));
+        return codeMapService.createCodeMap(codeString);
     }
 
     private String readEncoded() {
@@ -70,17 +61,9 @@ public class HuffmanEncodingService {
         return result.toString();
     }
 
-    private Map<String, Long> buildFrequencyMap(String text) {
-        return stream(text.split(EMPTY)).collect(groupingBy(identity(), counting()));
-    }
-
     private byte[] encode(String text, Map<Integer, String> code) {
         StringBuilder compressed = new StringBuilder(text.chars().mapToObj(code::get).collect(Collectors.joining()));
         String bitString = appendSuffix(compressed);
         return new BigInteger(bitString, 2).toByteArray();
-    }
-
-    private String createCodeString(Map<Integer, String> code) {
-        return code.entrySet().stream().map(e -> "" + e.getKey() + CODE_SEPARATOR + e.getValue()).collect(Collectors.joining(SYMBOL_SEPARATOR));
     }
 }
