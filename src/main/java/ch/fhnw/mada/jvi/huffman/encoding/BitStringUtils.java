@@ -9,7 +9,8 @@ public class BitStringUtils {
      * This function converts a bytearray into a bit string adding zero padding to the left. The size of the bit mask
      * is size 8.
      *
-     * Source http://www.java2s.com/Tutorials/Java/Data_Type/Array_Convert/Convert_byte_array_to_bit_string_in_Java.htm
+     * This is a standard implementation of a toBitString function privided by
+     * http://www.java2s.com/Tutorials/Java/Data_Type/Array_Convert/Convert_byte_array_to_bit_string_in_Java.htm
      *
      * @param byte[] to convert
      * @return bitstring representation of the passed byte[]
@@ -33,11 +34,29 @@ public class BitStringUtils {
         return String.valueOf(bits);
     }
 
+    /**
+     * Removes the last one and all subsequent zeros from a String.
+     *
+     * This can be used to remove the suffix appended by BitStringUtils{@link #appendSuffix(StringBuilder)}
+     *
+     * @param bitString
+     * @return
+     */
     public static String removeSuffix(String bitString) {
         int lastIndexOfOne = bitString.lastIndexOf(ONE);
         return bitString.substring(0, lastIndexOfOne);
     }
 
+    /**
+     * Appends a single one to a bit string. If the length of the resulting String is not dividible by 8 it
+     * appends zeros until it is.
+     *
+     * This can be used to append a suffix to a bit string. Which will allow for it to be convieniently converted
+     * to a byte array. Further the suffix can be used to indicate the bit strings end.
+     *
+     * @param original
+     * @return
+     */
     public static String appendSuffix(StringBuilder original) {
         original.append(ONE);
         while (original.length() % 8 != 0) {

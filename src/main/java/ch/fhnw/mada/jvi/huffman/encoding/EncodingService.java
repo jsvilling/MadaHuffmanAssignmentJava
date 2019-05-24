@@ -8,6 +8,11 @@ import java.util.stream.Collectors;
 
 import static ch.fhnw.mada.jvi.huffman.encoding.BitStringUtils.appendSuffix;
 
+/**
+ * Service to encode and decode a text file using huffman encoding.
+ *
+ *
+ */
 public class EncodingService {
 
     private final FileService fileService;
