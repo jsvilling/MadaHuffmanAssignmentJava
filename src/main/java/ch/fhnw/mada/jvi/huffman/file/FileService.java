@@ -11,12 +11,12 @@ import java.nio.file.Paths;
  *
  * The FileService works with the following files:
  *
- *  * <ul>
- *  *     <li>text.txt          - Textfile containing the text to be encoded</li>
- *  *     <li>dec_tab.txt       - Textfile containing the huffman code to be used</li>
- *  *     <li>output.dat        - Binary file containing the encoded text</li>
- *  *     <li>decompressed.txt  - Textfile containing the decoded output</li>
- *  * </ul>
+ *   <ul>
+ *       <li>text.txt          - Textfile containing the text to be encoded</li>
+ *       <li>dec_tab.txt       - Textfile containing the huffman code to be used</li>
+ *       <li>output.dat        - Binary file containing the encoded text</li>
+ *       <li>decompressed.txt  - Textfile containing the decoded output</li>
+ *   </ul>
  *
  *  By default all files are expected to be in the working directory of the project. If necessary this service can be
  *  configured with custom file paths.
