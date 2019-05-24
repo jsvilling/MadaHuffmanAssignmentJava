@@ -1,10 +1,11 @@
 package ch.fhnw.mada.jvi.huffman.ui;
 
 
+import ch.fhnw.mada.jvi.huffman.encoding.CodeMapService;
 import ch.fhnw.mada.jvi.huffman.encoding.EncodingService;
+import ch.fhnw.mada.jvi.huffman.file.FileService;
 import ch.fhnw.mada.jvi.huffman.ui.input.UserAction;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 import static ch.fhnw.mada.jvi.huffman.ui.input.Label.*;
@@ -13,10 +14,9 @@ public class CommandLineInterface {
 
     private final CommandLineInputReader reader = new CommandLineInputReader(new Scanner(System.in));
 
-    private final EncodingService huffmanEnCodingService = new EncodingService();
+    private final EncodingService huffmanEnCodingService = new EncodingService(new FileService(), new CodeMapService());
 
-
-    public void run() throws IOException {
+    public void run() {
         System.out.println(WELCOME);
         do {
             switch (readAction()) {

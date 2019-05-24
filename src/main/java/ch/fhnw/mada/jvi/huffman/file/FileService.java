@@ -1,44 +1,57 @@
 package ch.fhnw.mada.jvi.huffman.file;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class FileService {
 
-    private static final String SOURCE_FILE = "text.txt";
-    private static final String CODE_FILE = "dec_tab-mada.txt";
-    private static final String COMPRESSED_FILE = "output-mada.dat";
-    private static final String DECOMPRESSED_FILE = "decompressed.txt";
+    private final String sourceFile;
+    private final String codeFile;
+    private final String compressedFile;
+    private final String decompressedFile;
+
+    public FileService() {
+        this.sourceFile = "text.txt";
+        this.codeFile = "dec_tab-mada.txt";
+        this.compressedFile = "output-mada.dat";
+        this.decompressedFile = "decompressed.txt";
+    }
+
+    public FileService(String sourceFile, String codeFile, String compressedFile, String decompressedFile) {
+        this.sourceFile = sourceFile;
+        this.codeFile = codeFile;
+        this.compressedFile = compressedFile;
+        this.decompressedFile = decompressedFile;
+    }
 
     public String readDecodedFile() {
-        return readTextFile(SOURCE_FILE);
+        return readTextFile(sourceFile);
     }
 
     public byte[] readEncodedFile() {
-        return readBinaryFile(new File(COMPRESSED_FILE));
+        return readBinaryFile(new File(compressedFile));
     }
 
     public String readCodeFile() {
-        return readTextFile(CODE_FILE);
+        return readTextFile(codeFile);
     }
 
     public void writeCompressedFile(byte[] compressed) {
-        writeBinaryFile(compressed, COMPRESSED_FILE);
+        writeBinaryFile(compressed, compressedFile);
     }
 
     public void writeCodeFile(String text) {
-        writeTextFile(text, CODE_FILE);
+        writeTextFile(text, codeFile);
     }
 
     public void writeDecodedFile(String text) {
-        writeTextFile(text, DECOMPRESSED_FILE);
+        writeTextFile(text, decompressedFile);
     }
 
     private String readTextFile(String fileName) {
         try {
-            return Files.readString(Paths.get(fileName), StandardCharsets.UTF_8);
+            return Files.readString(Paths.get(fileName));
         } catch (IOException e) {
             e.printStackTrace();
             throw new RuntimeException(e);

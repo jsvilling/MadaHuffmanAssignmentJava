@@ -10,8 +10,13 @@ import static ch.fhnw.mada.jvi.huffman.encoding.BitStringUtils.appendSuffix;
 
 public class EncodingService {
 
-    private final FileService fileService = new FileService();
-    private final CodeMapService codeMapService = new CodeMapService();
+    private final FileService fileService;
+    private final CodeMapService codeMapService;
+
+    public EncodingService(FileService fileService, CodeMapService codeMapService) {
+        this.fileService = fileService;
+        this.codeMapService = codeMapService;
+    }
 
     public void encode() {
         String text = readDecoded();
