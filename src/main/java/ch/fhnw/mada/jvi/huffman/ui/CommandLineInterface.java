@@ -1,7 +1,7 @@
 package ch.fhnw.mada.jvi.huffman.ui;
 
 
-import ch.fhnw.mada.jvi.huffman.EncodingService;
+import ch.fhnw.mada.jvi.huffman.encoding.EncodingService;
 import ch.fhnw.mada.jvi.huffman.ui.input.UserAction;
 
 import java.io.IOException;

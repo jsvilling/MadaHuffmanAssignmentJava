@@ -1,4 +1,4 @@
-package ch.fhnw.mada.jvi.huffman;
+package ch.fhnw.mada.jvi.huffman.encoding;
 
 public class BitStringUtils {
 

@@ -1,4 +1,4 @@
-package ch.fhnw.mada.jvi.huffman;
+package ch.fhnw.mada.jvi.huffman.encoding;
 
 import ch.fhnw.mada.jvi.huffman.file.FileService;
 
@@ -6,7 +6,7 @@ import java.math.BigInteger;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static ch.fhnw.mada.jvi.huffman.BitStringUtils.appendSuffix;
+import static ch.fhnw.mada.jvi.huffman.encoding.BitStringUtils.appendSuffix;
 
 public class EncodingService {
 

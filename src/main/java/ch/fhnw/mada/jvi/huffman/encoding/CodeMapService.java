@@ -1,4 +1,4 @@
-package ch.fhnw.mada.jvi.huffman;
+package ch.fhnw.mada.jvi.huffman.encoding;
 
 import ch.fhnw.mada.jvi.huffman.tree.HuffmanTreeNode;
 
@@ -9,8 +9,8 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static ch.fhnw.mada.jvi.huffman.BitStringUtils.ONE;
-import static ch.fhnw.mada.jvi.huffman.BitStringUtils.ZERO;
+import static ch.fhnw.mada.jvi.huffman.encoding.BitStringUtils.ONE;
+import static ch.fhnw.mada.jvi.huffman.encoding.BitStringUtils.ZERO;
 import static java.lang.Integer.parseInt;
 import static java.util.Arrays.stream;
 import static java.util.function.Function.identity;
