@@ -1,7 +1,7 @@
 package ch.fhnw.mada.jvi.huffman.ui;
 
 
-import ch.fhnw.mada.jvi.huffman.HuffmanEncodingService;
+import ch.fhnw.mada.jvi.huffman.EncodingService;
 import ch.fhnw.mada.jvi.huffman.ui.input.UserAction;
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class CommandLineInterface {
 
     private final CommandLineInputReader reader = new CommandLineInputReader(new Scanner(System.in));
 
-    private final HuffmanEncodingService huffmanEnCodingService = new HuffmanEncodingService();
+    private final EncodingService huffmanEnCodingService = new EncodingService();
 
 
     public void run() throws IOException {
